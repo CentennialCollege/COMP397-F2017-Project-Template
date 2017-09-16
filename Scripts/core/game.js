@@ -12,7 +12,6 @@
     }
     function Update() {
         helloLabel.rotation += 5;
-        helloLabel.x += 5;
         stage.update();
     }
     function Main() {
