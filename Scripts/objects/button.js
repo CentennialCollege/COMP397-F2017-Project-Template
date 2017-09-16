@@ -18,13 +18,14 @@ var objects;
         /**
          * Creates an instance of Button.
          *
-         * @param {string} imagePath
+         * @param {createjs.LoadQueue} assetManager
+         * @param {string} imageName
          * @param {number} x
          * @param {number} y
          * @param {boolean} isCentered
          */
-        function Button(imagePath, x, y, isCentered) {
-            var _this = _super.call(this, imagePath) || this;
+        function Button(assetManager, imageName, x, y, isCentered) {
+            var _this = _super.call(this, assetManager.getResult(imageName)) || this;
             if (isCentered) {
                 _this.regX = _this.getBounds().width * 0.5;
                 _this.regY = _this.getBounds().height * 0.5;

@@ -7,17 +7,19 @@ module objects {
     /**
      * Creates an instance of Button.
      *
-     * @param {string} imagePath
+     * @param {createjs.LoadQueue} assetManager
+     * @param {string} imageName
      * @param {number} x
      * @param {number} y
      * @param {boolean} isCentered
      */
     constructor(
-      imagePath:string,
+      assetManager:createjs.LoadQueue,
+      imageName:string,
       x:number,
       y:number,
       isCentered:boolean) {
-      super(imagePath);
+      super(assetManager.getResult(imageName));
 
       if(isCentered) {
         this.regX = this.getBounds().width * 0.5;

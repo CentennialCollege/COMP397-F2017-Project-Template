@@ -4,6 +4,16 @@
     var canvas;
     var helloLabel;
     var clickButton;
+    var assetManager;
+    var assetManifest = [
+        { id: "clickMeButton", src: "../../Assets/images/clickMeButton.png" }
+    ];
+    function Init() {
+        assetManager = new createjs.LoadQueue();
+        assetManager.installPlugin(createjs.Sound);
+        assetManager.on("complete", Start);
+        assetManager.loadManifest(assetManifest);
+    }
     function Start() {
         canvas = document.getElementById("canvas");
         stage = new createjs.Stage(canvas);
@@ -13,16 +23,18 @@
         Main();
     }
     function Update() {
-        helloLabel.rotation += 5;
         stage.update();
     }
     function Main() {
         console.log("Game Started...");
         helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
         stage.addChild(helloLabel);
-        clickButton = new objects.Button("../../Assets/images/clickMeButton.png", 320, 340, true);
+        clickButton = new objects.Button(assetManager, "clickMeButton", 320, 340, true);
         stage.addChild(clickButton);
+        clickButton.on("click", function () {
+            helloLabel.TextString = "GoodBye Cruel World";
+        });
     }
-    window.onload = Start;
+    window.onload = Init;
 })();
 //# sourceMappingURL=game.js.map
