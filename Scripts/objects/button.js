@@ -15,9 +15,34 @@ var objects;
         // PRIVATE INSTANCE VARIABlES +++++++++++
         // PUBLIC PROPERTIES ++++++++++++++++++++
         // CONSTRUCTORS +++++++++++++++++++++++++
-        function Button() {
-            return _super.call(this) || this;
+        /**
+         * Creates an instance of Button.
+         *
+         * @param {string} imagePath
+         * @param {number} x
+         * @param {number} y
+         * @param {boolean} isCentered
+         */
+        function Button(imagePath, x, y, isCentered) {
+            var _this = _super.call(this, imagePath) || this;
+            if (isCentered) {
+                _this.regX = _this.getBounds().width * 0.5;
+                _this.regY = _this.getBounds().height * 0.5;
+            }
+            _this.x = x;
+            _this.y = y;
+            // event listeners
+            _this.on("mouseover", _this._mouseOver);
+            _this.on("mouseout", _this._mouseOut);
+            return _this;
         }
+        // PRIVATE METHODS ++++++++++++++++++++++
+        Button.prototype._mouseOver = function (event) {
+            this.alpha = 0.7; // change opacity to 70%
+        };
+        Button.prototype._mouseOut = function (event) {
+            this.alpha = 1.0; // change the opacity to 100%
+        };
         return Button;
     }(createjs.Bitmap));
     objects.Button = Button;
