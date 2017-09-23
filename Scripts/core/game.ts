@@ -6,6 +6,8 @@
   let clickButton:objects.Button;
   let assetManager:createjs.LoadQueue;
 
+  let gameContainer:objects.Scene;
+
   let assetManifest = [
     {id: "clickMeButton", src:"../../Assets/images/clickMeButton.png"}
   ];
@@ -31,13 +33,14 @@
   }
 
   function Main() {
-    console.log("Game Started...");
+    gameContainer = new objects.Scene();
+    stage.addChild(gameContainer);
 
     helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
-    stage.addChild(helloLabel);
+    gameContainer.addChild(helloLabel);
 
     clickButton = new objects.Button(assetManager, "clickMeButton", 320, 340, true);
-    stage.addChild(clickButton);
+    gameContainer.addChild(clickButton);
 
     clickButton.on("click", function() {
       helloLabel.TextString = "GoodBye Cruel World";
