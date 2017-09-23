@@ -28,7 +28,7 @@
   }
 
   function Update() {
-    //currentScene.Update();
+    currentScene.Update();
     stage.update();
   }
 

@@ -34,7 +34,7 @@ module scenes {
 
       this.addChild(this._clickButton);
 
-      this._clickButton.on("click", function() {
+      this._clickButton.on("click", () => {
         this._helloLabel.TextString = "GoodBye Cruel World";
       });
     }
