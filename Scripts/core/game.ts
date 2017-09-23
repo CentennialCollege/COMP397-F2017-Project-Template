@@ -2,15 +2,12 @@
 (function(){
   let stage:createjs.Stage;
   let canvas:any;
-  let helloLabel:objects.Label;
-  let clickButton:objects.Button;
   let assetManager:createjs.LoadQueue;
-
-  let gameContainer:objects.Scene;
-
   let assetManifest = [
     {id: "clickMeButton", src:"../../Assets/images/clickMeButton.png"}
   ];
+
+  let currentScene: objects.Scene;
 
   function Init() {
     assetManager = new createjs.LoadQueue();
@@ -25,6 +22,8 @@
     stage.enableMouseOver(20);
     createjs.Ticker.framerate = 60;
     createjs.Ticker.on("tick", Update);
+
+    currentScene = new scenes.Start(assetManager);
     Main();
   }
 
@@ -33,18 +32,8 @@
   }
 
   function Main() {
-    gameContainer = new objects.Scene();
-    stage.addChild(gameContainer);
+    stage.addChild(currentScene);
 
-    helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
-    gameContainer.addChild(helloLabel);
-
-    clickButton = new objects.Button(assetManager, "clickMeButton", 320, 340, true);
-    gameContainer.addChild(clickButton);
-
-    clickButton.on("click", function() {
-      helloLabel.TextString = "GoodBye Cruel World";
-    });
 
   }
 
