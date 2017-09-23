@@ -28,6 +28,7 @@
   }
 
   function Update() {
+    //currentScene.Update();
     stage.update();
   }
 

@@ -12,6 +12,7 @@ module scenes {
     constructor(assetManager:createjs.LoadQueue) {
       super();
       this._assetManager = assetManager;
+      this.Start();
     }
     // PRIVATE METHODS
 
@@ -19,6 +20,7 @@ module scenes {
     public Start():void {
       this._helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
       this._clickButton = new objects.Button(this._assetManager, "clickMeButton", 320, 340, true);
+      this.Main();
     }
 
     public Update():void {

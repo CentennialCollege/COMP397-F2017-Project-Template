@@ -17,6 +17,7 @@ var scenes;
         function Start(assetManager) {
             var _this = _super.call(this) || this;
             _this._assetManager = assetManager;
+            _this.Start();
             return _this;
         }
         // PRIVATE METHODS
@@ -24,6 +25,7 @@ var scenes;
         Start.prototype.Start = function () {
             this._helloLabel = new objects.Label("Hello World!", "40px", "Consolas", "#000000", 320, 240, true);
             this._clickButton = new objects.Button(this._assetManager, "clickMeButton", 320, 340, true);
+            this.Main();
         };
         Start.prototype.Update = function () {
         };

@@ -8,7 +8,6 @@ module objects {
     constructor() {
       super();
 
-      this.Start();
     }
     // PRIVATE METHODS
 
