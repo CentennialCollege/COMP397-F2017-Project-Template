@@ -7,6 +7,7 @@
         { id: "clickMeButton", src: "../../Assets/images/clickMeButton.png" }
     ];
     var currentScene;
+    var currentState;
     function Init() {
         assetManager = new createjs.LoadQueue();
         assetManager.installPlugin(createjs.Sound);
@@ -19,7 +20,7 @@
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60;
         createjs.Ticker.on("tick", Update);
-        currentScene = new scenes.Start(assetManager);
+        currentState = config.START;
         Main();
     }
     function Update() {
@@ -27,6 +28,17 @@
         stage.update();
     }
     function Main() {
+        switch (currentState) {
+            case config.START:
+                currentScene = new scenes.Start(assetManager);
+                break;
+            case config.PLAY:
+                //currentScene = new scenes.Play(assetManager);
+                break;
+            case config.END:
+                //currentScene = new scenes.End(assetManager);
+                break;
+        }
         stage.addChild(currentScene);
     }
     window.onload = Init;
