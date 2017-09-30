@@ -12,7 +12,6 @@ var objects;
 (function (objects) {
     var Scene = /** @class */ (function (_super) {
         __extends(Scene, _super);
-        // PRIVATE INSTANCE VARIABLES
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
         function Scene() {
@@ -29,6 +28,7 @@ var objects;
          * Update elements in the scene
          */
         Scene.prototype.Update = function () {
+            return 0;
         };
         /**
          *  Add elements in the Main Method

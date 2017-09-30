@@ -4,7 +4,9 @@
     var canvas;
     var assetManager;
     var assetManifest = [
-        { id: "clickMeButton", src: "../../Assets/images/clickMeButton.png" }
+        { id: "backButton", src: "../../Assets/images/backButton.png" },
+        { id: "nextButton", src: "../../Assets/images/nextButton.png" },
+        { id: "startButton", src: "../../Assets/images/startButton.png" }
     ];
     var currentScene;
     var currentState;
@@ -24,19 +26,24 @@
         Main();
     }
     function Update() {
-        currentScene.Update();
+        var newState = currentScene.Update();
+        if (newState != currentState) {
+            currentState = newState;
+            Main();
+        }
         stage.update();
     }
     function Main() {
+        stage.removeAllChildren();
         switch (currentState) {
             case config.START:
-                currentScene = new scenes.Start(assetManager);
+                currentScene = new scenes.Start(assetManager, currentState);
                 break;
             case config.PLAY:
-                //currentScene = new scenes.Play(assetManager);
+                currentScene = new scenes.Play(assetManager, currentState);
                 break;
             case config.END:
-                //currentScene = new scenes.End(assetManager);
+                currentScene = new scenes.End(assetManager, currentState);
                 break;
         }
         stage.addChild(currentScene);

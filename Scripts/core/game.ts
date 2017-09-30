@@ -4,7 +4,9 @@
   let canvas:any;
   let assetManager:createjs.LoadQueue;
   let assetManifest = [
-    {id: "clickMeButton", src:"../../Assets/images/clickMeButton.png"}
+    {id: "backButton", src:"../../Assets/images/backButton.png"},
+    {id: "nextButton", src:"../../Assets/images/nextButton.png"},
+    {id: "startButton", src:"../../Assets/images/startButton.png"}
   ];
 
   let currentScene: objects.Scene;
@@ -24,31 +26,34 @@
     createjs.Ticker.framerate = 60;
     createjs.Ticker.on("tick", Update);
 
-
-
     currentState = config.START;
     Main();
   }
 
   function Update() {
-    currentScene.Update();
+    let newState = currentScene.Update();
+    if(newState != currentState) {
+      currentState = newState;
+      Main();
+    }
     stage.update();
   }
 
   function Main() {
 
+    stage.removeAllChildren();
 
     switch(currentState) {
       case config.START:
-      currentScene = new scenes.Start(assetManager);
+      currentScene = new scenes.Start(assetManager, currentState);
       break;
 
       case config.PLAY:
-      //currentScene = new scenes.Play(assetManager);
+      currentScene = new scenes.Play(assetManager, currentState);
       break;
 
       case config.END:
-      //currentScene = new scenes.End(assetManager);
+      currentScene = new scenes.End(assetManager, currentState);
       break;
     }
 

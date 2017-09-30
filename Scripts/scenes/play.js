@@ -10,11 +10,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var Start = /** @class */ (function (_super) {
-        __extends(Start, _super);
+    var Play = /** @class */ (function (_super) {
+        __extends(Play, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTORS
-        function Start(assetManager, currentScene) {
+        function Play(assetManager, currentScene) {
             var _this = _super.call(this) || this;
             _this._assetManager = assetManager;
             _this._currentScene = currentScene;
@@ -23,25 +23,31 @@ var scenes;
         }
         // PRIVATE METHODS
         // PUBLIC METHODS
-        Start.prototype.Start = function () {
-            this._welcomeLabel = new objects.Label("Welcome to the Game", "40px", "Consolas", "#000000", 320, 240, true);
-            this._startButton = new objects.Button(this._assetManager, "startButton", 320, 340, true);
+        Play.prototype.Start = function () {
+            this._playLabel = new objects.Label("Game Playing", "40px", "Consolas", "#000000", 320, 240, true);
+            this._backButton = new objects.Button(this._assetManager, "backButton", 100, 340, true);
+            this._nextButton = new objects.Button(this._assetManager, "nextButton", 540, 340, true);
             this.Main();
         };
-        Start.prototype.Update = function () {
+        Play.prototype.Update = function () {
             return this._currentScene;
         };
-        Start.prototype.Main = function () {
+        Play.prototype.Main = function () {
             var _this = this;
-            this.addChild(this._welcomeLabel);
-            this.addChild(this._startButton);
-            this._startButton.on("click", function () {
-                _this._currentScene = config.PLAY;
+            this.addChild(this._playLabel);
+            this.addChild(this._backButton);
+            this.addChild(this._nextButton);
+            this._backButton.on("click", function () {
+                _this._currentScene = config.START;
+                _this.removeAllChildren();
+            });
+            this._nextButton.on("click", function () {
+                _this._currentScene = config.END;
                 _this.removeAllChildren();
             });
         };
-        return Start;
+        return Play;
     }(objects.Scene));
-    scenes.Start = Start;
+    scenes.Play = Play;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=start.js.map
+//# sourceMappingURL=play.js.map

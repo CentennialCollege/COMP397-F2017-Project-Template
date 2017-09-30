@@ -1,10 +1,10 @@
 module scenes {
-  export class Start extends objects.Scene {
+  export class End extends objects.Scene {
     // PRIVATE INSTANCE VARIABLES
     private _assetManager:createjs.LoadQueue;
 
-    private _welcomeLabel:objects.Label;
-    private _startButton:objects.Button;
+    private _gameOverLabel:objects.Label;
+    private _backButton:objects.Button;
 
     // PUBLIC PROPERTIES
 
@@ -19,8 +19,8 @@ module scenes {
 
     // PUBLIC METHODS
     public Start():void {
-      this._welcomeLabel = new objects.Label("Welcome to the Game", "40px", "Consolas", "#000000", 320, 240, true);
-      this._startButton = new objects.Button(this._assetManager, "startButton", 320, 340, true);
+      this._gameOverLabel = new objects.Label("Game Over", "40px", "Consolas", "#000000", 320, 240, true);
+      this._backButton = new objects.Button(this._assetManager, "backButton", 320, 340, true);
       this.Main();
     }
 
@@ -30,12 +30,12 @@ module scenes {
 
     public Main():void {
 
-      this.addChild(this._welcomeLabel);
+      this.addChild(this._gameOverLabel);
 
 
-      this.addChild(this._startButton);
+      this.addChild(this._backButton);
 
-      this._startButton.on("click", () => {
+      this._backButton.on("click", () => {
         this._currentScene = config.PLAY;
         this.removeAllChildren();
       });
